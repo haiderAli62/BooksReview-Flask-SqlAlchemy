@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block title %}
+	Books HOme
+{% endblock %}
+
+{% block body %}
+	
+
+	
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href={{ url_for('home') }} ><h1>Books</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+     
+      <li class="nav-item">
+        
+        <a class="nav-link" href={{ url_for("index") }}>Logout</a>
+      </li>
+    </ul>
+    <form action={{ url_for("search") }} class="form-inline my-2 my-lg-0" method="GET">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Book</button>
+    </form>
+  </div>
+</nav>
+<br><br><br>
+
+<div class="jumbotron">
+  <h1>{{book.title}}</h1>
+  <ul>
+    <li><h5>ISBN : {{book.isbn}}</h5></li>
+    <li><h5>Author : {{book.author}}</h5></li>
+    <li><h5>Year : {{book.year}}</h5></li>
+  </ul>
+
+  <br><br>
+  <h2>Reviews : </h2>
+  <br>
+  {% for R,N in zip_data %}
+
+   <h2>Reviewed by :  {{N}} </h2>
+   <h4>Rating : </h4>  
+        <h5>{{R.rating}} stars </h5>
+  <h4>Description : </h4>
+        <h5>{{R.comment}}</h5>
+
+        <br>
+        <br>
+  {% endfor %}
+  <br><br>
+  <h1>Goodreads reviews </h1>
+  <h3>Average Ratings : {{avg_rating}}</h3>
+  <h3>Number of Ratings the work has received : {{num_of_rating}}</h3>
+
+<br><br>
+<h3>Submit you review</h3>
+<div class="stars">
+  <form action={{url_for('rating' , isb=book.isbn ) }} method="GET">
+    <input class="star star-5" id="star-5" type="radio" value="5"  name="star"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" value="4" name="star"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" value="3" name="star"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" value="2" name="star"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" value="1" name="star"/>
+    <label class="star star-1" for="star-1"></label>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Enter your thoughts </label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+  </div>
+    <button class="btn btn-primary">submit</button>
+  </form>
+</div>
+  
+</div>
+
+
+
+
+{% endblock %}
