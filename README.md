@@ -1,5 +1,1 @@
-# Project 1
-
-Web Programming with Python and JavaScript
-"# book-review-website-" 
-"# BooksReview-Flask-SqlAlchemy" 
+In this book review website. Users will be able to register for website and then log in using their username and password. Once they log in, they will be able to search for books, leave reviews for individual books, and see the reviews made by other people.Finally, users will be able to query for book details and book reviews programmatically website’s API.
